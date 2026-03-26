@@ -42,4 +42,61 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.reveal').forEach(el => {
         observer.observe(el);
     });
+
+    // Demo video behavior: lazy load, autoplay-safe start, responsive controls
+    const demoVideo = document.getElementById('demo-video');
+    if (demoVideo) {
+        const desktopMedia = window.matchMedia('(hover: hover) and (pointer: fine)');
+        const isDesktop = () => desktopMedia.matches;
+
+        const syncControls = () => {
+            if (isDesktop()) {
+                demoVideo.removeAttribute('controls');
+            } else {
+                demoVideo.setAttribute('controls', '');
+            }
+        };
+
+        syncControls();
+        if (desktopMedia.addEventListener) {
+            desktopMedia.addEventListener('change', syncControls);
+        } else if (desktopMedia.addListener) {
+            desktopMedia.addListener(syncControls);
+        }
+
+        demoVideo.addEventListener('mouseenter', () => {
+            if (isDesktop()) {
+                demoVideo.setAttribute('controls', '');
+            }
+        });
+
+        demoVideo.addEventListener('mouseleave', () => {
+            if (isDesktop()) {
+                demoVideo.removeAttribute('controls');
+            }
+        });
+
+        const source = demoVideo.querySelector('source[data-src]');
+        const loadVideo = () => {
+            if (!source || source.getAttribute('src')) return;
+            source.setAttribute('src', source.dataset.src);
+            demoVideo.load();
+            demoVideo.play().catch(() => {});
+        };
+
+        if ('IntersectionObserver' in window) {
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        loadVideo();
+                        videoObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.25 });
+
+            videoObserver.observe(demoVideo);
+        } else {
+            loadVideo();
+        }
+    }
 });
