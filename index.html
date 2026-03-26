@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinel | AI Focus Guardian</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-shield-halved logo-icon"></i>
+                SENTINEL
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#preview">Preview</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#github">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="container reveal">
+            <h1>Control Your Focus.<br><span class="gradient-text">Or Lose It.</span></h1>
+            <p>Sentinel is an AI-powered browser guardian that detects distractions and forces you back to your goal.</p>
+            <div class="hero-btns">
+                <a href="#download" class="btn btn-primary"><i class="fa-solid fa-download"></i> Download Extension</a>
+                <a href="#demo" class="btn btn-outline"><i class="fa-solid fa-play"></i> Watch Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEMO VIDEO SECTION -->
+    <section id="demo">
+        <div class="container reveal">
+            <div class="section-header">
+                <h2>See Sentinel in Action</h2>
+                <p class="text-muted">Watch how the AI detects and blocks distractions in real-time.</p>
+            </div>
+            <div class="demo-container">
+                <video controls muted loop poster="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop">
+                    <source src="explain.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="features">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Core Features</h2>
+                <p class="text-muted">Everything you need to maintain absolute focus.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <i class="fa-solid fa-brain feature-icon"></i>
+                    <h3>AI Page Analysis</h3>
+                    <p>Analyzes page content in real-time to determine if it aligns with your current goal.</p>
+                </div>
+                <div class="feature-card danger reveal">
+                    <i class="fa-solid fa-ban feature-icon"></i>
+                    <h3>Strict Mode</h3>
+                    <p>Instantly blocks distracting sites and redirects you back to your work environment.</p>
+                </div>
+                <div class="feature-card danger reveal">
+                    <i class="fa-solid fa-triangle-exclamation feature-icon"></i>
+                    <h3>Warning Overlay</h3>
+                    <p>Pulsing red borders and visual alerts when you start drifting off-task.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <i class="fa-solid fa-chart-pie feature-icon"></i>
+                    <h3>Time Tracking</h3>
+                    <p>Precise monitoring of your Focus Time vs. Wasted Time throughout the day.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <i class="fa-solid fa-star feature-icon"></i>
+                    <h3>Score System</h3>
+                    <p>Gamified focus scoring that updates dynamically based on your browsing behavior.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <i class="fa-solid fa-microphone-lines feature-icon"></i>
+                    <h3>Voice Assistant</h3>
+                    <p>Integrated ElevenLabs voice synthesis to verbally warn you when distracted.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>How It Works</h2>
+                <p class="text-muted">A seamless flow from intention to execution.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-step reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>1. Set Your Goal</h3>
+                        <p>Tell Sentinel what you're working on (e.g., "Coding a React app").</p>
+                    </div>
+                </div>
+                <div class="timeline-step reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>2. AI Analysis</h3>
+                        <p>Sentinel silently analyzes every tab and page you visit.</p>
+                    </div>
+                </div>
+                <div class="timeline-step warning reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="danger-text">3. Warning Triggered</h3>
+                        <p>If you open Reddit, the screen flashes red and the AI warns you.</p>
+                    </div>
+                </div>
+                <div class="timeline-step warning reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="danger-text">4. Strict Redirect</h3>
+                        <p>If you ignore the warning, Sentinel closes the tab and redirects you.</p>
+                    </div>
+                </div>
+                <div class="timeline-step reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>5. Score Updated</h3>
+                        <p>Your focus score adjusts, keeping you accountable all day.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE PREVIEW -->
+    <section id="preview">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Extension Interface</h2>
+                <p class="text-muted">A glimpse into the Sentinel control panel.</p>
+            </div>
+            <div class="preview-wrapper reveal">
+                <div class="extension-mock">
+                    <div class="mock-header">
+                        <div style="font-weight: 600; font-family: 'Poppins', sans-serif;"><i class="fa-solid fa-shield-halved" style="color: var(--primary);"></i> Sentinel</div>
+                        <div style="font-size: 0.8rem; color: var(--danger); font-weight: 600; display: flex; align-items: center; gap: 0.3rem;">
+                            <span style="width: 8px; height: 8px; background: var(--danger); border-radius: 50%; display: inline-block; box-shadow: 0 0 8px var(--danger);"></span>
+                            OFF-TRACK
+                        </div>
+                    </div>
+                    <div class="mock-score">
+                        <div class="score-circle">42</div>
+                        <div style="font-size: 0.9rem; color: var(--text-muted);">Focus Score</div>
+                    </div>
+                    <div class="mock-stats">
+                        <div class="stat-box">
+                            <div class="label">Focus Time</div>
+                            <div class="value" style="color: #10b981;">2h 15m</div>
+                        </div>
+                        <div class="stat-box" style="border: 1px solid rgba(239, 68, 68, 0.3);">
+                            <div class="label">Wasted</div>
+                            <div class="value" style="color: var(--danger);">45m</div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem;">Current Goal:</div>
+                        <div style="background: rgba(0,0,0,0.3); padding: 0.8rem; border-radius: 8px; font-size: 0.9rem; border: 1px solid var(--border);">
+                            Finish landing page deployment
+                        </div>
+                    </div>
+                    <button class="mock-btn">
+                        <i class="fa-solid fa-volume-high"></i> AI Voice Warning
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOWNLOAD & STRUCTURE -->
+    <section id="download">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Install Sentinel</h2>
+                <p class="text-muted">Get started in less than 2 minutes.</p>
+            </div>
+            
+            <div class="download-steps reveal">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div>
+                        <h3 style="margin-bottom: 0.2rem;">Download the Extension</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Get the latest ZIP file from our repository.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div>
+                        <h3 style="margin-bottom: 0.2rem;">Open Chrome Extensions</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Navigate to <code>chrome://extensions/</code> in your browser.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div>
+                        <h3 style="margin-bottom: 0.2rem;">Enable Developer Mode</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Toggle the switch in the top right corner.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div>
+                        <h3 style="margin-bottom: 0.2rem;">Load Unpacked</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Click "Load unpacked" and select the Sentinel folder.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center reveal" style="text-align: center; margin-bottom: 4rem;">
+                <button class="btn btn-primary" style="font-size: 1.2rem; padding: 1rem 2.5rem;">
+                    <i class="fa-solid fa-download"></i> Download Sentinel.zip
+                </button>
+            </div>
+
+            <div id="structure" class="reveal">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Project Structure</h3>
+                <div class="code-block">
+<pre>project/
+├── index.html
+├── style.css
+├── script.js
+├── explain.mp4
+├── README.md
+
+├── extension/
+│   ├── manifest.json
+│   ├── background.js
+│   ├── content.js
+│   ├── popup.html
+│   ├── popup.js
+│   ├── sidepanel.html
+│   └── sidepanel.js
+
+└── backend/
+    ├── server.js
+    └── routes/
+        ├── analyze.js
+        ├── suggest.js
+        └── voice.js</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GITHUB SECTION -->
+    <section id="github">
+        <div class="container reveal">
+            <div class="github-card">
+                <i class="fa-brands fa-github" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                <h2 style="margin-bottom: 1rem;">Open Source & Transparent</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">Sentinel is built for the community. Check out the source code, contribute, or fork it for your own needs.</p>
+                <a href="#" class="btn btn-outline"><i class="fa-solid fa-code-branch"></i> View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section id="cta" style="padding-bottom: 8rem;">
+        <div class="container reveal" style="text-align: center;">
+            <h2 style="font-size: 3rem; margin-bottom: 1.5rem;">Start Winning Your Focus Today</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 2.5rem;">Stop letting distractions steal your time. Let AI guard your attention.</p>
+            <a href="#download" class="btn btn-primary" style="font-size: 1.2rem; padding: 1rem 3rem;">Download Now</a>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.9rem;">
+        <p>&copy; 2026 Sentinel AI. Built for focus.</p>
+    </footer>
+
+    <script src="/script.js"></script>
+</body>
+</html>
