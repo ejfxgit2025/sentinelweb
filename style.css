@@ -537,6 +537,78 @@ nav.scrolled {
     margin: 0 auto;
 }
 
+
+.download-cta-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.download-cta {
+    --cta-grad: linear-gradient(120deg, #7c3aed 0%, #4f46e5 48%, #2563eb 100%);
+    --cta-shadow: 0 16px 40px rgba(67, 56, 202, 0.45), 0 0 38px rgba(96, 165, 250, 0.28);
+    --cta-shadow-hover: 0 22px 52px rgba(76, 29, 149, 0.56), 0 0 55px rgba(96, 165, 250, 0.5);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 56px;
+    padding: 0.95rem 2.2rem;
+    border-radius: 999px;
+    color: #fff;
+    font-size: clamp(1rem, 2.4vw, 1.15rem);
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.01em;
+    background: var(--cta-grad);
+    border: 1px solid rgba(191, 219, 254, 0.35);
+    box-shadow: var(--cta-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    isolation: isolate;
+    overflow: hidden;
+    width: min(100%, 420px);
+}
+
+.download-cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(120deg, rgba(255,255,255,0.22), rgba(255,255,255,0));
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+.download-cta:hover {
+    transform: scale(1.03);
+    box-shadow: var(--cta-shadow-hover);
+    filter: brightness(1.05);
+}
+
+.download-cta:active {
+    transform: scale(0.98);
+    box-shadow: 0 12px 32px rgba(67, 56, 202, 0.45), 0 0 28px rgba(96, 165, 250, 0.3);
+}
+
+.download-cta:focus-visible {
+    outline: 2px solid #c4b5fd;
+    outline-offset: 4px;
+}
+
+.download-cta__icon {
+    width: 1.45rem;
+    height: 1.45rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.download-cta__icon svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+
 /* GitHub */
 .github-card {
     background: var(--surface);
@@ -570,6 +642,8 @@ nav.scrolled {
     .timeline-step, .timeline-step:nth-child(even) { flex-direction: column; align-items: flex-start; padding-left: 80px; }
     .timeline-content { width: 100%; }
     .hero-btns { flex-direction: column; }
+    .download-cta-wrapper { width: 100%; }
+    .download-cta { width: 100%; }
     .section-header h2 { font-size: 2rem; }
     .demo-shell { width: 95%; }
 }
