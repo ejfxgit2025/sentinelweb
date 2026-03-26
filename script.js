@@ -43,61 +43,111 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // Demo video behavior: lazy load, autoplay-safe start, responsive controls
-    const demoVideo = document.getElementById('demo-video');
-    if (demoVideo) {
-        const desktopMedia = window.matchMedia('(hover: hover) and (pointer: fine)');
-        const isDesktop = () => desktopMedia.matches;
+    // Demo player: thumbnail-first YouTube experience with custom controls
+    const demoPlayer = document.getElementById('demo-player');
+    if (demoPlayer) {
+        const videoId = demoPlayer.dataset.videoId;
+        const thumbnailLayer = demoPlayer.querySelector('.demo-thumbnail-layer');
+        const iframeLayer = demoPlayer.querySelector('.demo-iframe-layer');
+        const playPauseBtn = demoPlayer.querySelector('[data-action="play"]');
+        const muteBtn = demoPlayer.querySelector('[data-action="mute"]');
 
-        const syncControls = () => {
-            if (isDesktop()) {
-                demoVideo.removeAttribute('controls');
+        let iframe = null;
+        let isPlaying = false;
+        let isMuted = false;
+
+        const postCommand = (func) => {
+            if (!iframe || !iframe.contentWindow) return;
+            iframe.contentWindow.postMessage(JSON.stringify({
+                event: 'command',
+                func,
+                args: []
+            }), 'https://www.youtube.com');
+        };
+
+        const updatePlayButton = () => {
+            const icon = playPauseBtn?.querySelector('i');
+            if (!icon || !playPauseBtn) return;
+            icon.className = isPlaying ? 'fa-solid fa-pause' : 'fa-solid fa-play';
+            playPauseBtn.setAttribute('aria-label', isPlaying ? 'Pause video' : 'Play video');
+        };
+
+        const updateMuteButton = () => {
+            const icon = muteBtn?.querySelector('i');
+            if (!icon || !muteBtn) return;
+            icon.className = isMuted ? 'fa-solid fa-volume-xmark' : 'fa-solid fa-volume-high';
+            muteBtn.setAttribute('aria-label', isMuted ? 'Unmute video' : 'Mute video');
+        };
+
+        const createIframe = () => {
+            if (iframe || !videoId || !iframeLayer) return;
+            iframe = document.createElement('iframe');
+            iframe.className = 'demo-iframe';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+            iframe.setAttribute('allowfullscreen', '');
+            iframe.title = 'Sentinel in-action demo video';
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&enablejsapi=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1`;
+            iframeLayer.appendChild(iframe);
+            demoPlayer.classList.add('is-playing');
+
+            [playPauseBtn, muteBtn].forEach((button) => {
+                if (button) button.disabled = false;
+            });
+
+            isPlaying = true;
+            updatePlayButton();
+            updateMuteButton();
+        };
+
+        const startPlayback = () => {
+            createIframe();
+            postCommand('playVideo');
+            isPlaying = true;
+            updatePlayButton();
+        };
+
+        const togglePlayback = () => {
+            if (!iframe) {
+                startPlayback();
+                return;
+            }
+
+            if (isPlaying) {
+                postCommand('pauseVideo');
             } else {
-                demoVideo.setAttribute('controls', '');
+                postCommand('playVideo');
             }
+
+            isPlaying = !isPlaying;
+            updatePlayButton();
         };
 
-        syncControls();
-        if (desktopMedia.addEventListener) {
-            desktopMedia.addEventListener('change', syncControls);
-        } else if (desktopMedia.addListener) {
-            desktopMedia.addListener(syncControls);
-        }
+        const toggleMute = () => {
+            if (!iframe) {
+                startPlayback();
+            }
 
-        demoVideo.addEventListener('mouseenter', () => {
-            if (isDesktop()) {
-                demoVideo.setAttribute('controls', '');
+            if (isMuted) {
+                postCommand('unMute');
+            } else {
+                postCommand('mute');
+            }
+
+            isMuted = !isMuted;
+            updateMuteButton();
+        };
+
+        thumbnailLayer?.addEventListener('click', startPlayback);
+        thumbnailLayer?.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                startPlayback();
             }
         });
 
-        demoVideo.addEventListener('mouseleave', () => {
-            if (isDesktop()) {
-                demoVideo.removeAttribute('controls');
-            }
-        });
-
-        const source = demoVideo.querySelector('source[data-src]');
-        const loadVideo = () => {
-            if (!source || source.getAttribute('src')) return;
-            source.setAttribute('src', source.dataset.src);
-            demoVideo.load();
-            demoVideo.play().catch(() => {});
-        };
-
-        if ('IntersectionObserver' in window) {
-            const videoObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        loadVideo();
-                        videoObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.25 });
-
-            videoObserver.observe(demoVideo);
-        } else {
-            loadVideo();
-        }
+        playPauseBtn?.addEventListener('click', togglePlayback);
+        muteBtn?.addEventListener('click', toggleMute);
     }
 
     const downloadBtn = document.getElementById('download-sentinel-btn');
