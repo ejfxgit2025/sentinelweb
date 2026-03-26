@@ -99,4 +99,37 @@ document.addEventListener('DOMContentLoaded', () => {
             loadVideo();
         }
     }
+
+    const downloadBtn = document.getElementById('download-sentinel-btn');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', async (event) => {
+            event.preventDefault();
+            const url = downloadBtn.dataset.downloadUrl || downloadBtn.href;
+
+            try {
+                const response = await fetch(url, { mode: 'cors' });
+                if (!response.ok) throw new Error('Download request failed');
+
+                const blob = await response.blob();
+                const objectUrl = URL.createObjectURL(blob);
+                const blobLink = document.createElement('a');
+                blobLink.href = objectUrl;
+                blobLink.download = 'Sentinel.zip';
+                document.body.appendChild(blobLink);
+                blobLink.click();
+                blobLink.remove();
+                setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+            } catch {
+                const directLink = document.createElement('a');
+                directLink.href = url;
+                directLink.download = 'Sentinel.zip';
+                directLink.target = '_blank';
+                directLink.rel = 'noopener';
+                document.body.appendChild(directLink);
+                directLink.click();
+                directLink.remove();
+            }
+        });
+    }
+
 });
