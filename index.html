@@ -50,23 +50,33 @@
                 <p class="text-muted">Watch how the AI detects and blocks distractions in real-time.</p>
             </div>
             <div class="demo-shell">
-                <div class="demo-container">
-                    <video
-                        id="demo-video"
-                        class="demo-video"
-                        autoplay
-                        muted
-                        loop
-                        playsinline
-                        preload="none"
-                        controlslist="nodownload noplaybackrate"
-                        poster="/demo-poster.jpg"
-                        aria-label="Sentinel product demonstration video"
-                    >
-                        <source data-src="/demo.mp4" type="video/mp4">
-                        Your browser does not support the video tag. You can download the demo at <a href="/demo.mp4">/demo.mp4</a>.
-                    </video>
-                    <div class="demo-glass-overlay" aria-hidden="true"></div>
+                <div class="demo-container" id="demo-player" data-video-id="ZGV-x0Tot70" role="region" aria-label="Sentinel product demo player">
+                    <div class="demo-thumbnail-layer" role="button" tabindex="0" aria-label="Play Sentinel product demo">
+                        <img
+                            class="demo-thumbnail"
+                            src="https://img.youtube.com/vi/ZGV-x0Tot70/maxresdefault.jpg"
+                            alt="Sentinel in-action video preview"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                        <div class="demo-play-overlay">
+                            <span class="demo-play-button" aria-hidden="true">
+                                <svg viewBox="0 0 100 100" role="img" focusable="false">
+                                    <path d="M39 31.5 71 50 39 68.5z"></path>
+                                </svg>
+                            </span>
+                            <p>Play Product Demo</p>
+                        </div>
+                    </div>
+                    <div class="demo-iframe-layer" aria-hidden="true"></div>
+                    <div class="demo-controls" aria-label="Video controls">
+                        <button type="button" class="demo-control-btn" data-action="play" aria-label="Pause video" disabled>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+                        <button type="button" class="demo-control-btn" data-action="mute" aria-label="Mute video" disabled>
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
